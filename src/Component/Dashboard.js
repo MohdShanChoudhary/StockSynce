@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 
+
 const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  const handleEditClick = () => {
+    alert('Item editor form would open here.');
+  };
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -16,22 +21,26 @@ const Dashboard = () => {
     return () => document.removeEventListener('keydown', handleEsc);
   }, [menuOpen]);
 
-  const handleEditClick = () => {
-    alert('Item editor form would open here.');
-  };
-
   return (
     <>
       <header>
         <div className="logo" aria-label="StockSync Logo">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/3/33/Stock_icon.svg"
-            alt="StockSync Logo"
-            width={50}
-          />
+          <img src={logo} alt="StockSync Logo" width={50} />
         </div>
-        <button aria-label="Toggle menu" onClick={toggleMenu}>☰</button>
+        <button
+          className="hamburger"
+          aria-label="Open navigation menu"
+          onClick={toggleMenu}
+        >
+          &#9776;
+        </button>
       </header>
+
+      <div className="edit-button-container">
+        <button className="edit-button" onClick={handleEditClick}>
+          EDIT ITEM
+        </button>
+      </div>
 
       <nav className={`side-menu ${menuOpen ? 'open' : ''}`} aria-label="Navigation menu">
         <div className="menu-item">📄 About</div>
@@ -40,11 +49,7 @@ const Dashboard = () => {
         <div className="menu-item">🗑️ Delete Account</div>
       </nav>
 
-      {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
-
-      <div className="edit-button-container">
-        <button className="edit-button" onClick={handleEditClick}>EDIT ITEM</button>
-      </div>
+      <div className={`overlay ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
 
       <main className="cards-container" aria-label="Stock Summary Cards">
         <section className="stock-card" data-type="total">
