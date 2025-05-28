@@ -25,7 +25,7 @@ const Dashboard = () => {
     <>
       <header>
         <div className="logo" aria-label="StockSync Logo">
-          <img src={logo} alt="StockSync Logo" width={50} />
+          <img src={logo} alt="StockSync Logo"  />
         </div>
         <button
           className="hamburger"

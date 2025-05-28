@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
+<img src="/logo.png" alt="StockSync Logo" />
 
 
 const Dashboard = () => {
